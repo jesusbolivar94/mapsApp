@@ -2,8 +2,9 @@ import { MutationTree } from 'vuex';
 import { placesState } from './state';
 
 const mutation: MutationTree<placesState> = {
-    someMutation( /* state: placesState */) {
-        // a line to prevent linter errors
+    setLngLat( state: placesState, { lng, lat }: { lng: number, lat: number } ) {
+        state.userLocation = [ lng, lat ]
+        state.isLoading = false
     }
 }
 
