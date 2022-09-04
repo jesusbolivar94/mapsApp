@@ -7,7 +7,7 @@ import './styles/styles.scss'
 // @ts-ignore
 import mapboxgl from 'mapbox-gl' // or "const mapboxgl = require('mapbox-gl');"
 
-mapboxgl.accessToken = 'access-token';
+mapboxgl.accessToken = 'pk.eyJ1IjoiajVyb2pvIiwiYSI6ImNsN210bGY5aTBjdHIzeG95OXJqZW9qc3gifQ.h2uQYLxlP2p8yttgGlp4xA';
 
 if ( !navigator.geolocation ) {
     alert('Tu navegador no soporta el GeoLocation')
