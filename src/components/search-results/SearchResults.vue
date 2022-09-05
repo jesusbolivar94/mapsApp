@@ -6,7 +6,7 @@
             <h5>Nombre del lugar</h5>
             <p>Lorem ipsum dolor sit amet.</p>
             <div class="text-end">
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary btn-sm">
                     Direcciones
                 </button>
             </div>
@@ -15,7 +15,7 @@
             <h5>Nombre del lugar</h5>
             <p>Lorem ipsum dolor sit amet.</p>
             <div class="text-end">
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary btn-sm">
                     Direcciones
                 </button>
             </div>
@@ -24,7 +24,7 @@
             <h5>Nombre del lugar</h5>
             <p>Lorem ipsum dolor sit amet.</p>
             <div class="text-end">
-                <button class="btn btn-outline-primary">
+                <button class="btn btn-outline-primary btn-sm">
                     Direcciones
                 </button>
             </div>
@@ -35,5 +35,13 @@
 <style scoped>
     li {
         cursor: pointer;
+    }
+
+    h5 {
+        font-size: 15px !important;
+    }
+
+    p {
+        font-size: 12px;
     }
 </style>
