@@ -1,28 +1,19 @@
 <script lang="ts" src="./SearchResults.ts"></script>
 
 <template>
-    <ul class="list-group mt-3">
-        <li class="list-group-item list-group-item-action text-left">
-            <h5>Nombre del lugar</h5>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <div class="text-end">
-                <button class="btn btn-outline-primary btn-sm">
-                    Direcciones
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action text-left">
-            <h5>Nombre del lugar</h5>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <div class="text-end">
-                <button class="btn btn-outline-primary btn-sm">
-                    Direcciones
-                </button>
-            </div>
-        </li>
-        <li class="list-group-item list-group-item-action text-left">
-            <h5>Nombre del lugar</h5>
-            <p>Lorem ipsum dolor sit amet.</p>
+
+    <div v-if="isLoadingPlaces" class="alert alert-primary text-center">
+        <h5>Cargando</h5>
+        <span>Espere por favor...</span>
+    </div>
+
+    <ul class="list-group mt-3" v-else-if="places.length > 0">
+        <li
+            v-for="place in places"
+            :key="place.id"
+            class="list-group-item list-group-item-action text-left">
+            <h5>{{place.text}}</h5>
+            <p>{{place.place_name}}</p>
             <div class="text-end">
                 <button class="btn btn-outline-primary btn-sm">
                     Direcciones
