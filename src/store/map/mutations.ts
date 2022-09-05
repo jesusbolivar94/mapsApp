@@ -34,6 +34,76 @@ const mutation: MutationTree<MapState> = {
             state.markers.push(marker)
         }
 
+        // Clear Polyline
+        if ( state.map.getLayer('RouteString') ) {
+            state.map.removeLayer('RouteString')
+            state.map.removeSource('RouteString')
+            state.distance = undefined
+            state.duration = undefined
+        }
+    },
+    setRoutePolyline( state, cords: number[][] ) {
+
+        const start = cords[0]
+        const end = cords[ cords.length - 1 ]
+
+        // Definir los bounds
+        const bounds = new Mapboxgl.LngLatBounds(
+            [start[0], start[1]],
+            [start[0], start[1]]
+        )
+
+        // Agregamos cada punto al bounds
+        for (const coord of cords) {
+            const newCoord: [number, number] = [coord[0], coord[1]]
+            bounds.extend( newCoord )
+        }
+
+        state.map?.fitBounds( bounds, {
+            padding: 200
+        } )
+
+        // Polyline
+        // @ts-ignore
+        const sourceData = Mapboxgl.AnySourceData = {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: [
+                    {
+                        type: 'Features',
+                        properties: {},
+                        geometry: {
+                            type: 'LineString',
+                            coordinates: cords
+                        }
+                    }
+                ],
+            }
+        }
+
+        if ( state.map?.getLayer('RouteString') ) {
+            state.map.removeLayer('RouteString')
+            state.map.removeSource('RouteString')
+        }
+
+        // @ts-ignore
+        state.map?.addSource('RouteString', sourceData)
+
+        state.map?.addLayer({
+            id: 'RouteString',
+            type: 'line',
+            source: 'RouteString',
+            layout: {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            paint: {
+                'line-color': 'green',
+                'line-width': 3
+            }
+        })
+
     }
 }
 
