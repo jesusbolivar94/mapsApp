@@ -44,8 +44,6 @@ export default defineComponent({
         onMounted(() => {
             if ( isUserLocationReady.value )
                 return initMap()
-
-            console.log('No tengo localización aún')
         })
 
         watch( isUserLocationReady, ( newVal ) => {
